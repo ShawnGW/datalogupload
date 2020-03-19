@@ -16,7 +16,7 @@ public class FtCommonFileCompress implements FtFileCompress {
     @Override
     public ConcurrentLinkedQueue<File> compress(final ConcurrentLinkedQueue<File> queue, final String backupPath, final FtDatalogFileNameParser parser) {
         final ConcurrentLinkedQueue<File> fileNeedUploadQueue = new ConcurrentLinkedQueue<File>();
-        ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2 + 1);
+        ExecutorService service = Executors.newFixedThreadPool(3);
         List<Future<String>> list=new LinkedList<Future<String>>();
         while (!queue.isEmpty()) {
             Future<String> future = service.submit(new Callable<String>() {

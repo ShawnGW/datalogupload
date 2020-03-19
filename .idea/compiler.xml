@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="dataloguploadj750" />
+        <module name="Ft93000" />
         <module name="FtJ750" />
+        <module name="s200ftpupload" />
       </profile>
     </annotationProcessing>
   </component>

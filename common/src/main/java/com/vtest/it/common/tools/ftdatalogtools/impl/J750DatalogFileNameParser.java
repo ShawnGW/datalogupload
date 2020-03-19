@@ -4,7 +4,6 @@ import com.vtest.it.common.pojo.FtStdfInformationBean;
 import com.vtest.it.common.tools.FtDatalogRegexSamples;
 import com.vtest.it.common.tools.ftdatalogtools.FtDatalogFileNameParser;
 
-import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

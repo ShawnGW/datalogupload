@@ -11,6 +11,8 @@
         <module>datalog-upload-j750</module>
         <module>common</module>
         <module>Ft-J750</module>
+        <module>s200-ftp-upload</module>
+        <module>Ft-93000</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
