@@ -23,8 +23,10 @@ public class V93kQueueNeddUpload implements QueueNeedUpload {
             if (file.isFile()) {
                 String fileName = file.getName();
                 FtStdfInformationBean bean = parser.parse(fileName);
-                if (null == bean && timeCheck.check(file.lastModified(), 60 * 60 * 24 * 2)) {
-                    errorDataList.add(file);
+                if (null == bean) {
+                    if (timeCheck.check(file.lastModified(), 60 * 60 * 24 * 2)) {
+                        errorDataList.add(file);
+                    }
                     continue;
                 }
                 String suffix = bean.getSuffix();
