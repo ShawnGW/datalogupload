@@ -13,6 +13,7 @@
         <module>Ft-J750</module>
         <module>s200-ftp-upload</module>
         <module>Ft-93000</module>
+        <module>Hd-Aset</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

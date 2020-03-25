@@ -10,6 +10,7 @@
         <module name="dataloguploadj750" />
         <module name="Ft93000" />
         <module name="FtJ750" />
+        <module name="HdAset" />
         <module name="s200ftpupload" />
       </profile>
     </annotationProcessing>

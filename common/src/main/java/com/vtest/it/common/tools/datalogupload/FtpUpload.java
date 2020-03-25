@@ -32,6 +32,7 @@ public class FtpUpload {
                                client.changeWorkingDirectory(path);
                                client.storeFile(dataLogName+".temp",new FileInputStream(dataLog));
                                client.rename(dataLogName+".temp",dataLogName);
+                               System.out.println(dataLogName + ": upload successfully!");
                                FtpClientFactory.backClient();
                            } catch (IOException e) {
                                resultQueue.offer(dataLog);

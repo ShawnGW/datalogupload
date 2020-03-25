@@ -29,9 +29,11 @@ public class CommonFileCompress implements FileCompress {
                             backupDirectory.mkdirs();
                         }
                         File backupFile = new File(backupDirectory.getPath() + "/" + fileName + ".zip");
-                        ZipUtil.packEntry(dataLog, backupFile);
-                        fileNeedUploadQueue.offer(backupFile);
-                        FileUtils.forceDelete(dataLog);
+                        ZipUtil.pack(dataLog, backupFile);
+                        if (ZipUtil.containsEntry(backupFile, fileName)) {
+                            fileNeedUploadQueue.offer(backupFile);
+                            FileUtils.forceDelete(dataLog);
+                        }
                     }
                     return dataLog.getName() + " Finished";
                 }
