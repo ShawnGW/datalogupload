@@ -12,8 +12,8 @@
         <module>common</module>
         <module>Ft-J750</module>
         <module>s200-ftp-upload</module>
-        <module>Ft-93000</module>
         <module>Hd-Aset</module>
+        <module>Ft-v93000</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

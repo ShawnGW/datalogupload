@@ -8,11 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="dataloguploadj750" />
-        <module name="Ft93000" />
         <module name="FtJ750" />
+        <module name="Ftv93000" />
         <module name="HdAset" />
         <module name="s200ftpupload" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Ft93000" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

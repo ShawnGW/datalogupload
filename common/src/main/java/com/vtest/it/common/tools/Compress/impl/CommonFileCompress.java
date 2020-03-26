@@ -31,7 +31,7 @@ public class CommonFileCompress implements FileCompress {
                         File backupFile = new File(backupDirectory.getPath() + "/" + fileName + ".zip");
                         System.out.println(dataLog.getName());
                         ZipUtil.packEntry(dataLog, backupFile);
-                        if (ZipUtil.containsEntry(backupFile, fileName)) {
+                        if (ZipUtil.containsEntry(backupFile, dataLog.getName())) {
                             fileNeedUploadQueue.offer(backupFile);
                             FileUtils.forceDelete(dataLog);
                         }

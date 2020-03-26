@@ -26,6 +26,7 @@ public class DataLogUpload {
         if (files.length==0){
             return;
         }
+
         ConcurrentLinkedQueue<File> queue = new ConcurrentLinkedQueue<File>();
         List<File> errorDataList = new LinkedList<File>();
 
