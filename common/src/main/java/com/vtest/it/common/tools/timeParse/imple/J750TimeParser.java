@@ -9,6 +9,7 @@ public class J750TimeParser implements TimeParser {
 
     private SimpleDateFormat format=new SimpleDateFormat("yyyyMMdd_HHmmss");
 
+    @Override
     public long parse(String time) throws ParseException {
         return format.parse(time).getTime();
     }

@@ -19,6 +19,7 @@ public class HandlerCommonFileCompress implements FileCompress {
         while (!queue.isEmpty()) {
             final File dataLog = queue.poll();
             Future<String> future = service.submit(new Callable<String>() {
+                @Override
                 public String call() throws Exception {
                     if (null != dataLog) {
                         String fileName = dataLog.getName();

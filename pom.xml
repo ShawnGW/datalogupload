@@ -14,6 +14,8 @@
         <module>s200-ftp-upload</module>
         <module>Hd-Aset</module>
         <module>Ft-v93000</module>
+        <module>cp-chroma-log-upload</module>
+        <module>cp-v50-datalog-upload</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

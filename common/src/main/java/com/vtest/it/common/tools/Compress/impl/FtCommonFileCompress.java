@@ -33,7 +33,7 @@ public class FtCommonFileCompress implements FtFileCompress {
                         File backupFile = new File(backupDirectory.getPath() + "/" + fileName + ".zip");
                         System.out.println(dataLog.getName());
                         ZipUtil.packEntry(dataLog, backupFile);
-                        FileUtils.copyFile(dataLog, new File(backupPath + "/" + dataLog.getName()));
+//                        FileUtils.copyFile(dataLog, new File(backupPath + "/" + dataLog.getName()));
                         if (ZipUtil.containsEntry(backupFile, dataLog.getName())) {
                             fileNeedUploadQueue.offer(backupFile);
                             FileUtils.forceDelete(dataLog);

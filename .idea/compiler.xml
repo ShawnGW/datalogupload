@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
+        <module name="cpchromalogupload" />
+        <module name="cpv50datalogupload" />
         <module name="dataloguploadj750" />
         <module name="FtJ750" />
         <module name="Ftv93000" />
@@ -15,6 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="chromalogupload" target="1.5" />
       <module name="Ft93000" target="1.5" />
     </bytecodeTargetLevel>
   </component>

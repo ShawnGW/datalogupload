@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class V50DatalogParser implements DatalogFileNameParser {
     private Pattern pattern = Pattern.compile(DatalogRegexSamples.V50REGEX);
 
+    @Override
     public TesterDatalogInformationBean getFileInformation(String fileName) {
         Matcher matcher = pattern.matcher(fileName);
         if (matcher.find()) {

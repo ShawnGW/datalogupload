@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Ft-93000/pom.xml" />
+        <option value="$PROJECT_DIR$/chroma-log-upload/pom.xml" />
       </set>
     </option>
   </component>
