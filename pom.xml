@@ -16,6 +16,7 @@
         <module>Ft-v93000</module>
         <module>cp-chroma-log-upload</module>
         <module>cp-v50-datalog-upload</module>
+        <module>ft-sla-datalog-upload</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

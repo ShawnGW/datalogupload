@@ -1,22 +1,27 @@
 package com.vtest.it.common.tools.Compress.impl;
 
-import com.vtest.it.common.pojo.TesterDatalogInformationBean;
-import com.vtest.it.common.tools.Compress.FileCompress;
+import com.vtest.it.common.pojo.SlaBean;
+import com.vtest.it.common.tools.Compress.FileCompressWithInformation;
 import com.vtest.it.common.tools.PerfectFileName;
-import com.vtest.it.common.tools.parsedatalogtools.DatalogFileNameParser;
 import org.apache.commons.io.FileUtils;
 import org.zeroturnaround.zip.ZipUtil;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 
-public class CommonFileCompress implements FileCompress {
+/**
+ * @author shawn.sun
+ * @date 2020/07/17  16:04
+ */
+public class SlaFileCompress implements FileCompressWithInformation {
     @Override
-    public ConcurrentLinkedQueue<File> compress(final ConcurrentLinkedQueue<File> queue, final String backupPath, final DatalogFileNameParser parser) {
-        ExecutorService service = Executors.newFixedThreadPool(3);
-        final ConcurrentLinkedQueue<File> fileNeedUploadQueue = new ConcurrentLinkedQueue<File>();
+    public ConcurrentLinkedQueue<File> compress(ConcurrentLinkedQueue<File> queue, final String backupPath, final Map<File, Object> map) {
+        int processors = Runtime.getRuntime().availableProcessors();
+        final ConcurrentLinkedQueue<File> res = new ConcurrentLinkedQueue<File>();
+        ExecutorService service = new ThreadPoolExecutor(processors, processors, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
         List<Future<String>> list = new LinkedList<Future<String>>();
         while (!queue.isEmpty()) {
             final File dataLog = queue.poll();
@@ -25,8 +30,8 @@ public class CommonFileCompress implements FileCompress {
                 public String call() throws Exception {
                     if (null != dataLog) {
                         String fileName = PerfectFileName.remove(PerfectFileName.removeBrackets(dataLog.getName()));
-                        TesterDatalogInformationBean bean = parser.getFileInformation(fileName);
-                        File backupDirectory = new File(backupPath + "/" + bean.getCustomCode() + "/" + bean.getDevice() + "/" + bean.getLot() + "/" + bean.getCpStep() + "/" + bean.getWaferId());
+                        SlaBean bean = ((SlaBean) map.get(dataLog));
+                        File backupDirectory = new File(backupPath + "/" + bean.getDevice() + "/" + bean.getvLot() + "/" + bean.getCustomerCode() + "/" + bean.getDataCode());
                         if (!backupDirectory.exists()) {
                             backupDirectory.mkdirs();
                         }
@@ -34,7 +39,7 @@ public class CommonFileCompress implements FileCompress {
                         System.out.println(dataLog.getName());
                         ZipUtil.packEntry(dataLog, backupFile);
                         if (ZipUtil.containsEntry(backupFile, dataLog.getName())) {
-                            fileNeedUploadQueue.offer(backupFile);
+                            res.offer(backupFile);
                             FileUtils.forceDelete(dataLog);
                         }
                         System.out.println(backupFile.getName() + ": " + backupFile.length());
@@ -44,16 +49,16 @@ public class CommonFileCompress implements FileCompress {
             });
             list.add(future);
         }
+        service.shutdown();
         for (Future<String> future : list) {
             try {
-                System.err.println(future.get());
+                future.get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        service.shutdown();
-        return fileNeedUploadQueue;
+        return res;
     }
 }

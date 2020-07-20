@@ -11,6 +11,7 @@
         <module name="cpv50datalogupload" />
         <module name="dataloguploadj750" />
         <module name="FtJ750" />
+        <module name="ftsladatalogupload" />
         <module name="Ftv93000" />
         <module name="HdAset" />
         <module name="s200ftpupload" />
